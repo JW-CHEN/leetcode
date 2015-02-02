@@ -14,22 +14,22 @@ public:
     double postGetRes(int A[], int m, int frontA, int backA, int B[], int n, int frontB, int backB, int lowSize, int isEven) {
         double res;
         if (isEven) {
-           if (frontA < m-1 && B[lowSize+frontB] >= A[frontA+1])
+           if (frontA < m-1 && B[lowSize+frontB] >= A[frontA+1]) // case {3,4}, {1,2,5,6}
                 res = ((double)A[frontA] + A[frontA+1])/2;
            else {
-                if (lowSize + frontB < n-1) {
-                    if (A[frontA] <= B[lowSize+frontB-1])
+                if (lowSize + frontB < n-1) { 
+                    if (A[frontA] <= B[lowSize+frontB-1]) // case {1} {2,3,4}
                         res = ((double)B[lowSize+frontB] + B[lowSize+frontB-1])/2;
-                    else
+                    else                                  // case {5} {2,3,4}}
                         res = ((double)B[lowSize+frontB] + min(B[lowSize+frontB+1], A[frontA]))/2;
                 }
-                else {
+                else {                                    // case {1}, {2}   
                         res = ((double)B[lowSize+frontB] + A[frontA])/2;
                 }
             }
         }
         else {
-            if (A[frontA] < B[frontB+lowSize-1])
+            if (A[frontA] < B[frontB+lowSize-1]) // case {1} {2,3}
                 return B[frontB+lowSize-1];
             else
                 res = min(B[lowSize+frontB], A[frontA]);
@@ -69,7 +69,7 @@ public:
             midA = (frontA + backA)/2;
             midB = (frontB + backB)/2;
             if (lowSize > highSize) {
-                if (A[midA] < B[midB] || (A[midA] == B[midB] && A[midA-1] < B[midB-1])) {
+                if (A[midA] < B[midB] || (A[midA] == B[midB] && A[midA-1] < B[midB-1])) { // case {1,1} {1,2}
                     lowSize -= (midA - frontA + 1);
                     frontA = midA + 1;
                 }
