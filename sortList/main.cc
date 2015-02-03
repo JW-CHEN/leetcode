@@ -15,11 +15,15 @@ public:
             return head;
         ListNode *left, *right;
         ListNode *mid = head;
+        ListNode *cut;
         int i = 0;
         while (i < len/2) {
+            if (i == len/2-1)
+                cut = mid;
             mid = mid->next;
             i++;
         }
+        cut->next = NULL;
         left = mergeSort(head, len/2);
         right = mergeSort(mid, len-len/2);
         return merge(left, right, len);
