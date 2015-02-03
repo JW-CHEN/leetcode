@@ -34,29 +34,31 @@ public:
         ListNode *pright = right;
         ListNode *ret = NULL;
         ListNode *tmp;
+        if (pleft->val <= pright->val) {
+            ret = pleft;
+            pleft = pleft->next;
+        }
+        else {
+            ret = pright;
+            pright = pright->next;
+        }
+        tmp = ret;
         while (pleft != NULL && pright != NULL) {
             if (pleft->val <= pright->val) {
-                if (ret == NULL)
-                    ret = pleft;
-                while (pleft->next != NULL && pright->val > pleft->next->val) {
-                    pleft = pleft->next;
-                }
-                tmp = pleft->next;
-                pleft->next = pright;
-                pleft = tmp;
+                tmp->next = pleft;
+                tmp = pleft;
+                pleft = pleft->next;
             }
             else {
-                if (ret == NULL)
-                    ret = pright;
-                while (pright->next != NULL && pleft->val > pright->next->val) {
-                    pright = pright->next;
-                }
-                tmp = pright->next;
-                pright->next = pleft;
-                pright = tmp;
-                cout<<"xxxx"<<endl;
+                tmp->next = pright;
+                tmp = pright;
+                pright = pright->next;
             }
         }
+        if (pleft == NULL)
+            tmp->next = pright;
+        else
+            tmp->next = pleft;
         return ret;
     }
 
@@ -74,7 +76,7 @@ public:
 };
 
 int main() {
-    ListNode* head = new ListNode(2);
+    ListNode* head = new ListNode(1);
     head->next = new ListNode(1);
     Solution sl;
     ListNode *res = sl.sortList(head);
