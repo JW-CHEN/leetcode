@@ -43,6 +43,3 @@ public:
         return realRes;
     }
 };
-
-
-
