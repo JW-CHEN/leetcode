@@ -4,6 +4,9 @@
 #include <vector>
 #include <stack>
 #include <queue>
+#include <stdio.h>
+#include <stdlib.h>
+#include <sstream>
 
 using namespace std;
 
