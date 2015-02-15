@@ -11,10 +11,16 @@
 using namespace std;
 
 struct TreeNode {
+    int x;
+    TreeNode *l;
+    TreeNode *r;
+    TreeNode(int x) : x(x), l(NULL), r(NULL) {}
+};
+
+struct ListNode {
     int val;
-    TreeNode *left;
-    TreeNode *right;
-    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+    ListNode *next;
+    ListNode(int x) : val(x), next(NULL) {}
 };
 
 TreeNode* buildTree(char testcase[], int len) {
@@ -30,13 +36,13 @@ TreeNode* buildTree(char testcase[], int len) {
         if (ind >= len) 
             return root;
         if (testcase[ind] != '#') {
-            tmp->left = new TreeNode((int)testcase[ind] - 48);
-            que.push(tmp->left);
+            tmp->l = new TreeNode((int)testcase[ind] - 48);
+            que.push(tmp->l);
         }
         ind++;
         if (testcase[ind] != '#') {
-            tmp->right = new TreeNode((int)testcase[ind] - 48);
-            que.push(tmp->right);
+            tmp->r = new TreeNode((int)testcase[ind] - 48);
+            que.push(tmp->r);
         }
         ind++;
     }

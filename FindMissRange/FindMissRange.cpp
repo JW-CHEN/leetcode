@@ -45,9 +45,12 @@ public:
 	*/
     vector<string> findMissingRanges(int A[], int n, int lower, int upper) {
     	vector<string> res;
-    	if (n == 0)
-    		return res;
     	string temp;
+    	if (n == 0) {
+    		temp = (lower == upper) ? intToString(lower) : intToString(lower, upper);
+    		res.push_back(temp);
+    		return res;
+    	}
     	if (A[0] != lower) {
     		temp = (A[0] == lower+1) ? intToString(lower) : intToString(lower, A[0]-1);
     		res.push_back(temp);
